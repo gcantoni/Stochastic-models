@@ -50,6 +50,38 @@ end
 
 %        slide 8-9 fondamentali
 
-%% Regressione pesata - DA COMPLETARE
+% Regressione pesata
+x=[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]';
+y=[1.5 1.7 3.4 4.7 5.9 7 6.9 8.3 9.5 10 11.3 12.8 13.5 13.9 15.6]';
+X=[ones(length(x),1) x];
+beta = inv(X'*X)*X'*y;
 
-%% Perturbazione - DA COMPLETARE
+xx=1:0.01:15;
+yy=xx*beta(2)+beta(1);
+figure
+plot(xx,yy,'r');
+hold on
+plot(x,y,'o');
+
+% Perturbazione
+x=[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]';
+y=[1.5 1.7 3.4 4.7 5.9 7 6.9 8.3 9.5 10 11.3 20 22 13.9 15.6]';
+X=[ones(length(x),1) x];
+beta = inv(X'*X)*X'*y;
+
+xx=1:0.01:15;
+yy=xx*beta(2)+beta(1);
+figure
+plot(xx,yy,'r');
+hold on
+plot(x,y,'o');
+
+% Minimi quadrati ponderati
+
+D=diag([1 1 1 1 1 1 1 1 1 1 1 2 2 1 1]);
+beta2 = inv(X'*inv(D)*X)*X'*inv(D)*y;
+yy=xx*beta2(2)+beta2(1);
+figure
+plot(xx,yy,'r');
+hold on
+plot(x,y,'o');
