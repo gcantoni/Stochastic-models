@@ -1,0 +1,46 @@
+%% Esercitazione 2 - Regressione 
+
+% K-Fold Crossvalidation || Leave One Out - togliere uno alla volta ( vedi foto telefono )
+% Ripetere n volte una stima basata su n-1 dati
+
+
+% Lasso - metodo di costruire regressori quando k è grande ( vedi telefono )
+% tecnica di selezione del modello
+% esso affronta le matrice non linerm. indip. ( num.colonne > num.righe )
+
+% calcolo molti k e scelgo quello con MSE più basso
+
+%% Esercizio || File usato: AirQuality_MIPascal_BG_log.mat ( slide regressione )
+
+load('C:\temp\statistica\AirQuality_MIPascal_BG_log.mat');
+
+t=removevars(t, 'DirVento');
+t=t(:,7:15); % tabella a 9 colonne ora
+
+correlaz=corr(t.logMI,t.logBG,'Rows','complete'); % correlazione delle due colonne eliminando i nan però
+
+x=t.logMI;
+y=t.logBG;
+
+fitlm(x,y)
+cftool % Alternativa a fitlm
+
+scatter(t.logMI, t.logBG);
+close all;
+scatter(t.logMI,t.logBG); % plotto i grafici
+figure(1)
+
+% costruiamo un modello previsivo
+k=8;
+vn=t.Properties.VariableNames(1:k); % prendo il nome delle variabili delle colonne
+X=t{:,[1:8]}; % parentesi graffe estraggo matrice
+Y=t{:,[9]};
+
+[Bhat, lasso_st]=lasso(X,Y,'CV',5,'PredictorNames', vn) % calcolo lasso - MSE è quello che mi interessa
+
+plot(lasso_st.Lambda, lasso_st.MSE)
+figure(2)
+
+
+
+
