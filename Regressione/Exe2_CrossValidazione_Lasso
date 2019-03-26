@@ -41,6 +41,7 @@ Y=t{:,[9]};
 plot(lasso_st.Lambda, lasso_st.MSE)
 figure(2)
 
+% + Script Grafici ILIAS
 
-
-
+% Come cambio le cose se cambio k?
+% PROVA!
