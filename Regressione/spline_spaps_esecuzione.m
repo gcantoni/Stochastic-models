@@ -20,7 +20,7 @@ y=y+normrnd(0,sqrt(10),N,1);
 
 tol=0;
 exit=0;
-while (exit==0)
+while (exit==0) % non conosco numero iterazioni ? uso il while
     [sp,y_hat]=spaps(x,y,tol);
     y_hat=y_hat';
     R2=1-var(y_hat-y)/var(y);
