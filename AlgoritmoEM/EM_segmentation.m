@@ -26,3 +26,6 @@ mu=obj.mu;
 v=squeeze(obj.Sigma);
 imagesc(normrnd(mu(idx), sqrt(v(idx))));
 colormap gray
+
+% Algoritmo EM non permette di fornire un incertezza alle stime ( NO
+% inferenza statistica )
