@@ -21,7 +21,7 @@ P = posterior(obj,Y);
 idx=reshape(idx,s);
 imagesc(idx)
 
-%noise
+%noise - simulo nuova immagine
 mu=obj.mu;
 v=squeeze(obj.Sigma);
 imagesc(normrnd(mu(idx), sqrt(v(idx))));
