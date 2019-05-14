@@ -87,7 +87,8 @@ for j=1:700
     zhat_star(j) = max(abs(roots(pAR_star(j,:))));
 end
 
-
+bias_z = mean(zhat_star) - zhat0;
+mse_z = mean((zhat_star-zhat0).^2);
 
 
 
